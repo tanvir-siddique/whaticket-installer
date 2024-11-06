@@ -9,7 +9,7 @@
 #######################################
 system_create_user() {
   print_banner
-  printf "${WHITE} 💻 Agora, vamos criar o usuário para a instancia...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Now, let's create the user for the instance...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -29,7 +29,7 @@ EOF
 #######################################
 system_git_clone() {
   print_banner
-  printf "${WHITE} 💻 Fazendo download do código Whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Downloading the Whaticket code...${GRAY_LIGHT}"
   printf "\n\n"
 
 
@@ -49,7 +49,7 @@ EOF
 #######################################
 system_update() {
   print_banner
-  printf "${WHITE} 💻 Vamos atualizar o sistema Whaticket...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Let's update the Whaticket system...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -68,18 +68,18 @@ EOF
 #######################################
 system_node_install() {
   print_banner
-  printf "${WHITE} 💻 Instalando nodejs...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Installing nodejs...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
   sudo su - root <<EOF
-  curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
   apt-get install -y nodejs
   sleep 2
   npm install -g npm@latest
   sleep 2
-  sudo timedatectl set-timezone America/Sao_Paulo
+  #sudo timedatectl set-timezone America/Sao_Paulo
   
 EOF
 
@@ -92,7 +92,7 @@ EOF
 #######################################
 system_docker_install() {
   print_banner
-  printf "${WHITE} 💻 Instalando docker...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Installing docker...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -104,7 +104,7 @@ system_docker_install() {
 
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   
-  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable"
 
   apt install -y docker-ce
 EOF
@@ -125,7 +125,7 @@ EOF
 #######################################
 system_puppeteer_dependencies() {
   print_banner
-  printf "${WHITE} 💻 Instalando puppeteer dependencies...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Installing puppeteer dependencies...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -187,7 +187,7 @@ EOF
 #######################################
 system_pm2_install() {
   print_banner
-  printf "${WHITE} 💻 Instalando pm2...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Installing pm2...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -208,7 +208,7 @@ EOF
 #######################################
 system_snapd_install() {
   print_banner
-  printf "${WHITE} 💻 Instalando snapd...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Installing snapd...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -218,9 +218,9 @@ system_snapd_install() {
   snap install core
   snap refresh core
   sleep 2
-  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb
   sleep 2
-  apt install -y ./google-chrome-stable_current_amd64.deb -y
+  apt install -y ./google-chrome-stable_current_amd64.deb
 EOF
 
   sleep 2
@@ -233,7 +233,7 @@ EOF
 #######################################
 system_certbot_install() {
   print_banner
-  printf "${WHITE} 💻 Instalando certbot...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Installing certbot...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -254,7 +254,7 @@ EOF
 #######################################
 system_nginx_install() {
   print_banner
-  printf "${WHITE} 💻 Instalando nginx...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Installing nginx...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -274,7 +274,7 @@ EOF
 #######################################
 system_nginx_restart() {
   print_banner
-  printf "${WHITE} 💻 reiniciando nginx...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Restarting nginx...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -293,7 +293,7 @@ EOF
 #######################################
 system_nginx_conf() {
   print_banner
-  printf "${WHITE} 💻 configurando nginx...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Setting up nginx...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -316,7 +316,7 @@ EOF
 #######################################
 system_certbot_setup() {
   print_banner
-  printf "${WHITE} 💻 Configurando certbot...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Setting up certbot...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
