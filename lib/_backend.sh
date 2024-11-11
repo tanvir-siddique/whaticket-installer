@@ -39,6 +39,7 @@ backend_set_env() {
   backend_url=$(echo "${backend_url/https:\/\/}")
   backend_url=${backend_url%%/*}
   backend_url=https://$backend_url
+  export NODE_OPTIONS=--openssl-legacy-provider
 
   # ensure idempotency
   frontend_url=$(echo "${frontend_url/https:\/\/}")
