@@ -15,8 +15,8 @@ backend_redis_create() {
 
   sudo su - root <<EOF
   usermod -aG docker deploy
-  docker run --name mysql-${instancia_add} -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${instancia_add} -e MYSQL_USER=${instancia_add} -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p ${mysql_port}:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
-  docker run --name phpmyadmin-${instancia_add} -d --link mysql-${instancia_add}:db -p ${phpmyadmin_port}:80 phpmyadmin/phpmyadmin
+#  docker run --name mysql-${instancia_add} -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${instancia_add} -e MYSQL_USER=${instancia_add} -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p ${mysql_port}:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+#  docker run --name phpmyadmin-${instancia_add} -d --link mysql-${instancia_add}:db -p ${phpmyadmin_port}:80 phpmyadmin/phpmyadmin
   docker run -e TZ="America/Sao_Paulo" --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis:latest redis-server --appendonly yes --requirepass ${mysql_root_password}
 EOF
 sleep 2
@@ -54,7 +54,7 @@ PROXY_PORT=443
 CHROME_BIN=/usr/bin/google-chrome-stable
 PORT=${backend_port}
 
-DB_HOST=localhost
+DB_HOST=127.0.0.1
 DB_PORT=${mysql_port}
 DB_DIALECT=mysql
 DB_USER=${instancia_add}
@@ -178,7 +178,7 @@ EOF
 #######################################
 # runs db migrate
 # Arguments:
-#   None
+#   Nonehist 
 #######################################
 backend_db_migrate() {
   print_banner
