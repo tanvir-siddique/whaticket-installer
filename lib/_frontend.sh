@@ -16,6 +16,7 @@ frontend_node_dependencies() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/frontend
+  export NODE_OPTIONS=--openssl-legacy-provider
   npm install
 EOF
 
